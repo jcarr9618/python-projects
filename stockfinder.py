@@ -9,7 +9,8 @@ r = requests.get (url)
 
 soup = BeautifulSoup (r.text, 'html.parser')
 
-price = soup.find ('span',  {'class': 'Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)'}).text
-change = soup.find ('span', {'class': 'Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px) C($positiveColor) data-reactid="32">+1.26 (+0.71%)'}).text
+price = soup.find ('div', {'class':'D(ib) Mend(20px)'}).find_all('span')[0].text
+change = soup.find ('div', {'class':'D(ib) Mend(20px)'}).find_all('span')[1].text
+
 
 print (price, change)
