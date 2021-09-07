@@ -1,9 +1,12 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 from requests.api import get
 
 # Add user input + print results to CSV potentially? GUI much later down the line? 
 
+mystocks = ['AAPL', 'TSLA', 'MSFT', 'GOOGL']
+stockdatajson = []
 
 def getInfo(symbol):
     url = f'https://finance.yahoo.com/quote/{symbol}'
@@ -19,6 +22,13 @@ def getInfo(symbol):
     }
     return stock
 
+for item in mystocks: 
+    stockdatajson.append(getInfo(item))
+    print('getting: ', item)
 
-print (getInfo('AAPL'))
+
+with open('stockdata.json', 'w') as f:
+    json.dump(stockdatajson, f)
+
+print ('File has been created')
 
